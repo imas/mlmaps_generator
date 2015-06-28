@@ -1,0 +1,13 @@
+<h1>ミリフェス一覧</h1>
+<ul>
+  <%- @millifes_list.each do |ml| %>
+    <li>@<%= ml[:friend].screen_name %>(ID:<%= ml[:friend].id %>)
+      <ul>
+        <li><%= ml[:friend].name %></li>
+        <li><%= ml[:friend].description %></li>
+        <li>スペース: <%= ml[:space] %></li>
+        <li>配置: <%= ml[:alphabet] %></li>
+      </ul>
+    </li>
+  <%- end %>
+</ul>

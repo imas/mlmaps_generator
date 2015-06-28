@@ -8,4 +8,5 @@ Rails.application.routes.draw do
 
   # twitter
   get 'twitter/friends'
+  get 'twitter/millimas_friends'
 end

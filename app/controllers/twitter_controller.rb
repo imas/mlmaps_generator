@@ -2,6 +2,26 @@ class TwitterController < ApplicationController
   before_action :login_required
 
   def friends
+    @friend_list = friend_list
+  end
+
+  def millimas_friends
+    require 'nkf'
+
+    list = friend_list
+    @millifes_list = []
+
+    list.each do |friend|
+      next unless (NKF.nkf('-wXZ', friend.name) =~ /ミリフェス/)
+      m = /P(?<spnum>\d+)(?<spalp>[abAB]+)/.match(friend.name)
+      next if m.nil?
+      @millifes_list << { friend: friend, space: m['spnum'], alphabet: m['spalp'] }
+      puts friend.to_yaml
+    end
+  end
+
+  private
+  def friend_list
     access_key = session[:access_token]
     access_secret = session[:access_secret]
 
@@ -12,15 +32,16 @@ class TwitterController < ApplicationController
       access_token_secret: access_secret
     )
 
-    @friend_list = []
     begin
+      list = []
       cli.friend_ids.each_slice(100).each do |slice|
         cli.users(slice).each do |friend|
-          @friend_list << friend
+          list << friend
         end
       end
+      list
     rescue Twitter::Error::TooManyRequests => error
-      @friend_list = []
+      []
     end
   end
 end
