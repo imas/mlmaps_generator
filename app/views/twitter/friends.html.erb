@@ -1,0 +1,11 @@
+<h1>フォロー一覧</h1>
+<ul>
+  <%- @friend_list.each do |friend| %>
+    <li>@<%= friend.screen_name %>(ID:<%= friend.id %>)
+      <ul>
+        <li><%= friend.name %></li>
+        <li><%= friend.description %></li>
+      </ul>
+    </li>
+  <%- end %>
+</ul>

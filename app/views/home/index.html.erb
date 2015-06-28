@@ -1,7 +1,12 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>ミリフェスMAPジェネレーター</h1>
 <% if current_user %>
-  <%= current_user.name %> <%= link_to 'ログアウト', logout_path %>
+  <p><%= current_user.name %>でログイン中</p>
+  <ul>
+    <li><%= link_to 'フォロー一覧を取得', twitter_friends_path %></li>
+    <li><%= link_to 'ログアウト', logout_path %></li>
+  </ul>
 <% else %>
-  <%= link_to 'ログイン', '/auth/twitter' %>
+  <ul>
+    <li><%= link_to 'ログイン', '/auth/twitter' %></li>
+  </ul>
 <% end %>
