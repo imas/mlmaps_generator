@@ -1,13 +1,32 @@
-<h1>ミリフェス一覧</h1>
-<ul>
-  <%- @millifes_list.each do |ml| %>
-    <li>@<%= ml[:friend].screen_name %>(ID:<%= ml[:friend].id %>)
-      <ul>
-        <li><%= ml[:friend].name %></li>
-        <li><%= ml[:friend].description %></li>
-        <li>スペース: <%= ml[:space] %></li>
-        <li>配置: <%= ml[:alphabet] %></li>
-      </ul>
-    </li>
-  <%- end %>
-</ul>
+<canvas style='border:1px solid gray' id='mlmap' width='800px' height='708px'></canvas>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>screen_name</th>
+      <th>space</th>
+      <th>display_name</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @millifes_list.each do |ml| %>
+      <tr class="mlmap-row" id="row-<%= ml[:friend].id %>" data-target-id="<%= ml[:friend].id %>" data-spnum="<%= ml[:space] %>" data-spalp="<%= ml[:alphabet] %>">
+        <td>
+          <div style='text-align: center'>
+            <%= label_tag "visible-icon-#{ml[:friend].id}" do %>
+              <%= image_tag(ml[:friend].profile_image_url, alt: ml[:friend].name, class: 'mlmap-user-icon', width: '30', height: '30') %>
+            <%- end %>
+            <br />
+            <%= check_box_tag("visible-icon-#{ml[:friend].id}", true, true, class: 'toggle-icon', data: { target_id: ml[:friend].id })%>
+          </div>
+        </td>
+        <td>@<%= ml[:friend].screen_name %></td>
+        <td>P<%= ml[:space] %>-<%= ml[:alphabet] %></td>
+        <td><%= ml[:friend].name %></td>
+        <td><%= ml[:friend].description %></td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>

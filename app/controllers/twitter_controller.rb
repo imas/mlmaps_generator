@@ -13,11 +13,11 @@ class TwitterController < ApplicationController
 
     list.each do |friend|
       next unless (NKF.nkf('-wXZ', friend.name) =~ /ミリフェス/)
-      m = /P(?<spnum>\d+)(?<spalp>[abAB]+)/.match(friend.name)
+      m = /P(?<spnum>\d+)(?<spalp>[abAB]+)?/.match(friend.name)
       next if m.nil?
-      @millifes_list << { friend: friend, space: m['spnum'], alphabet: m['spalp'] }
-      puts friend.to_yaml
+      @millifes_list << { friend: friend, space: m['spnum'], alphabet: (m['spalp'].presence || 'ab') }
     end
+    @millifes_list.sort! { |a, b| a[:space].to_i <=> b[:space].to_i }
   end
 
   private
