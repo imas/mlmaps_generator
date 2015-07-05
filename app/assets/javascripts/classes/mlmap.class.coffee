@@ -23,6 +23,8 @@ class window.Mlmap
         MlCnf.MAP.ICON.WIDTH,
         MlCnf.MAP.ICON.HEIGHT
       ) if $("#visible-icon-#{user.id}")[0].checked
+
+    this._drawString('ミリフェスマップ', 30, 30, { font: { size: 23, color: '#333333', style: 'bold' }})
     this
 
   getSpacePosition: (space_num, space_alphabet) ->
@@ -68,11 +70,14 @@ class window.Mlmap
     c = MlCnf.MAP.SPSTAGE
     @ctx.fillStyle = c.COLOR
     @ctx.fillRect(c.POS.X, c.POS.Y, c.SIZE.WIDTH, c.SIZE.HEIGHT)
+    this._drawString('特設ステージ', c.POS.X + 95, 30)
 
     c = MlCnf.MAP.MAILRECEPTION
     @ctx.fillStyle = c.COLOR
     @ctx.fillRect(c.POS.X, c.POS.Y, c.SIZE.WIDTH, c.SIZE.HEIGHT)
+    this._drawString('宅配便受付', 15, c.POS.Y + 40)
 
+    this._drawString('入口', MlCnf.MAP.WIDTH - 50, MlCnf.MAP.HEIGHT - 30)
     @ctx.restore()
 
   _drawBlocks: () ->
@@ -83,4 +88,15 @@ class window.Mlmap
     for i in [0...(c.length)]
       @ctx.fillRect(c[i].POS.X, c[i].POS.Y, c[i].SIZE.WIDTH, c[i].SIZE.HEIGHT)
 
+    @ctx.restore()
+
+  _drawString: (str, x, y, conf) ->
+    @ctx.save()
+
+    f = conf?.font
+    @ctx.font = "#{f?.style || 'normal'} #{f?.size || MlCnf.FONT.SIZE}px #{f?.family || MlCnf.FONT.FAMILY}"
+    @ctx.fillStyle = f?.color || MlCnf.FONT.COLOR
+    @ctx.textAlign = conf?.text_align || 'start'
+    @ctx.textBaseline = conf?.text_baseline || 'top'
+    @ctx.fillText(str, x, y)
     @ctx.restore()

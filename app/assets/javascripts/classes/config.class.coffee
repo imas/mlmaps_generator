@@ -1,4 +1,10 @@
 class window.MlCnf
+  @TITLE: 'Mlmap Generator'
+  @FONT:
+    STYLE: 'normal'
+    SIZE: 18
+    FAMILY: 'sans-serif'
+    COLOR: '#666666'
   @MAP:
     WIDTH: 800
     HEIGHT: 708
