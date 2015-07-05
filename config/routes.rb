@@ -6,7 +6,5 @@ Rails.application.routes.draw do
   post '/auth/:provider/callback', :to => 'sessions#callback'
   get '/logout' => 'sessions#destroy', :as => :logout
 
-  # twitter
-  get 'twitter/friends'
-  get 'twitter/millimas_friends'
+  resources :twmaps, only: [:show]
 end

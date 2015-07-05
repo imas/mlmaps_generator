@@ -1,11 +1,11 @@
-class TwitterController < ApplicationController
+class TwmapsController < ApplicationController
   before_action :login_required
 
-  def friends
-    @friend_list = friend_list
-  end
-
-  def millimas_friends
+  def show
+    if params[:id] != 'millifes2'
+      redirect_to root_path
+      return
+    end
     require 'nkf'
 
     list = friend_list
