@@ -22,7 +22,11 @@
             <%= check_box_tag("visible-icon-#{ml[:friend].id}", true, true, class: 'toggle-icon', data: { target_id: ml[:friend].id })%>
           </div>
         </td>
-        <td>@<%= ml[:friend].screen_name %></td>
+        <td>
+          <%= link_to "https://twitter.com/#{ml[:friend].screen_name}", target: '_blank' do%>
+            @<%= ml[:friend].screen_name %>
+          <%- end %>
+        </td>
         <td>P<%= ml[:space] %>-<%= ml[:alphabet] %></td>
         <td><%= ml[:friend].name %></td>
         <td><%= ml[:friend].description %></td>
