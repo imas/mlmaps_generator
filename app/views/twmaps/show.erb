@@ -4,16 +4,15 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>screen_name</th>
-      <th>space</th>
-      <th>display_name</th>
+      <th>name</th>
       <th>description</th>
+      <th>memo</th>
     </tr>
   </thead>
   <tbody>
     <%- @millifes_list.each do |ml| %>
       <tr class="mlmap-row" id="row-<%= ml[:friend].id %>" data-target-id="<%= ml[:friend].id %>" data-spnum="<%= ml[:space] %>" data-spalp="<%= ml[:alphabet] %>">
-        <td>
+        <td rowspan='2'>
           <div style='text-align: center'>
             <%= label_tag "visible-icon-#{ml[:friend].id}" do %>
               <%= image_tag(ml[:friend].profile_image_url, alt: ml[:friend].name, class: 'mlmap-user-icon', width: '30', height: '30') %>
@@ -23,13 +22,24 @@
           </div>
         </td>
         <td>
-          <%= link_to "https://twitter.com/#{ml[:friend].screen_name}", target: '_blank' do%>
+          P<span style='font-weight: bold'><%= ml[:space] %></span>-<%= ml[:alphabet] %>:
+          <%= link_to ml[:friend].url.to_s, target: '_blank' do%>
             @<%= ml[:friend].screen_name %>
           <%- end %>
         </td>
-        <td>P<%= ml[:space] %>-<%= ml[:alphabet] %></td>
-        <td><%= ml[:friend].name %></td>
-        <td><%= ml[:friend].description %></td>
+        <td rowspan='2'><%= ml[:friend].description %></td>
+        <td rowspan='2'>
+          <%= text_field_tag("memo-#{ml[:friend].id}", "@#{ml[:friend].screen_name}", size: 50) %>
+        </td>
+      </tr>
+      <tr>
+        <td style='font-size: .8em'>
+          <%- if ml[:friend].website? %>
+            <%= link_to ml[:friend].name, ml[:friend].website.to_s, target: '_blank' %>
+          <%- else %>
+            <%= ml[:friend].name %>
+          <%- end %>
+        </td>
       </tr>
     <%- end %>
   </tbody>
