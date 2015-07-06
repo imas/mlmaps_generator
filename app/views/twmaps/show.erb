@@ -1,5 +1,11 @@
-<div class='col-lg-3' style='height: 710px; overflow: scroll;'>
-  <%= render partial: 'friend_list', locals: { friend_list: @millifes_list } %>
+<div class='col-lg-3'>
+  <%- unless current_user %>
+    <%= render partial: 'introduction' %>
+  <%- else %>
+    <div class='row' style='height: 710px; overflow: scroll;'>
+      <%= render partial: 'friend_list', locals: { friend_list: @millifes_list } %>
+    </div>
+  <%- end %>
 </div>
 
 <div class='col-lg-9'>
