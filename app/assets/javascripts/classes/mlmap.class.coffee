@@ -60,8 +60,6 @@ class window.Mlmap
   _resetCanvas: () ->
     @ctx.save()
     @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
-    @ctx.fillStyle = MlCnf.MAP.BGCOLOR
-    @ctx.fillRect(0, 0, MlCnf.MAP.WIDTH, MlCnf.MAP.HEIGHT)
     @ctx.restore()
 
   _drawStage: () ->
