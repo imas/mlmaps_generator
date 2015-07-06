@@ -74,7 +74,7 @@ class window.Mlmap
     c = MlCnf.MAP.MAILRECEPTION
     @ctx.fillStyle = c.COLOR
     @ctx.fillRect(c.POS.X, c.POS.Y, c.SIZE.WIDTH, c.SIZE.HEIGHT)
-    this._drawString('宅配便受付', 15, c.POS.Y + 40)
+    this._drawString('宅急便受付', 15, c.POS.Y + 40)
 
     this._drawString('入口', MlCnf.MAP.WIDTH - 50, MlCnf.MAP.HEIGHT - 30)
     @ctx.restore()
