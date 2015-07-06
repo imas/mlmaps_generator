@@ -15,8 +15,12 @@ $ ->
     @mlmap.draw()
 
   $(document).on 'ready', (ev) =>
-    c = $('canvas#mlmap')[0]
-    @mlmap = new Mlmap(c)
+    setTimeout () =>
+      init($('canvas#mlmap')[0])
+    , 300
+
+  init = (canvas) =>
+    @mlmap = new Mlmap(canvas)
     $.each $('.mlmap-row'), (i, item) =>
       [id, spnum, spalp] = [$(item).attr('data-target-id'), $(item).attr('data-spnum'), $(item).attr('data-spalp')]
       @mlmap.addUser({
