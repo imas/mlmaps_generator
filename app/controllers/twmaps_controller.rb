@@ -1,15 +1,14 @@
 class TwmapsController < ApplicationController
-  before_action :login_required
-
   def show
     if params[:id] != 'millifes2'
       redirect_to root_path
       return
     end
+    @millifes_list = []
+    return unless current_user
     require 'nkf'
 
     list = friend_list
-    @millifes_list = []
 
     list.each do |friend|
       next unless (NKF.nkf('-wXZ', friend.name) =~ /ミリフェス/)

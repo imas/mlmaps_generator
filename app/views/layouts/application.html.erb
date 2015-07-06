@@ -40,7 +40,18 @@
 
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
-        <a class="navbar-brand" href="#">MlmapGenerator</a>
+        <%= link_to 'MlmapGenerator', root_path, class: 'navbar-brand' %>
+        <div class='navbar-collapse collapse navbar-responsive-collapse'>
+          <ul class='nav navbar-nav navbar-right'>
+            <li>
+              <%- if current_user %>
+                <%= link_to "ログアウト(#{current_user.name})", logout_path %>
+              <% else %>
+                <%= link_to 'ログイン', '/auth/twitter' %>
+              <%- end %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 

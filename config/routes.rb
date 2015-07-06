@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root to: 'twmaps#show', id: 'millifes2'
 
   # auth
   get '/auth/:provider/callback', :to => 'sessions#callback'
