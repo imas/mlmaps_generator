@@ -16,14 +16,20 @@ class window.Mlmap
     this._drawSpaces()
 
     $.each @users, (i, user) =>
-      [x, y] = this.getSpacePosition(user.spnum, user.spalp)
+      return unless user.checkbox.checked
+
+      [x, y, block] = this.getSpacePosition(user.spnum, user.spalp)
       @ctx.drawImage(
         user.icon,
         x,
         y,
         MlCnf.MAP.ICON.WIDTH,
         MlCnf.MAP.ICON.HEIGHT
-      ) if $("#visible-icon-#{user.id}")[0].checked
+      )
+      if block.TEXT_POSITION == 'right'
+        this._drawString(user.textfield.value, x + 35, y, { font: { style: 'bold', size: 6, color: 'red' } })
+      else
+        this._drawString(user.textfield.value, x - 5, y, { font: { style: 'bold', size: 6, color: 'red' }, text_align: 'end' })
 
     this._drawString('ミリフェスマップ', 30, 30, { font: { size: 23, color: '#333333', style: 'bold' }})
     this
@@ -103,5 +109,9 @@ class window.Mlmap
     @ctx.fillStyle = f?.color || MlCnf.FONT.COLOR
     @ctx.textAlign = conf?.text_align || 'start'
     @ctx.textBaseline = conf?.text_baseline || 'top'
-    @ctx.fillText(str, x, y)
+
+    line_height = @ctx.measureText('　').width
+    arr = str.split('\n')
+    for line, index in arr
+      @ctx.fillText(line, x, y + line_height * index)
     @ctx.restore()

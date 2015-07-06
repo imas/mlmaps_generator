@@ -29,7 +29,7 @@
         </td>
         <td rowspan='2'><%= ml[:friend].description %></td>
         <td rowspan='2'>
-          <%= text_field_tag("memo-#{ml[:friend].id}", "@#{ml[:friend].screen_name}", size: 50) %>
+          <%= text_area_tag("memo-#{ml[:friend].id}", "@#{ml[:friend].screen_name}", size: 50) %>
         </td>
       </tr>
       <tr>

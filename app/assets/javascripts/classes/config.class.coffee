@@ -42,6 +42,7 @@ class window.MlCnf
           HEIGHT: 120
         SPACES: [1..2]
         ORDER_ASC: true
+        TEXT_POSITION: 'right'
       }
       {
         POS:
@@ -52,6 +53,7 @@ class window.MlCnf
           HEIGHT: 240
         SPACES: [3..6]
         ORDER_ASC: true
+        TEXT_POSITION: 'right'
       }
 
       # P7〜24
@@ -64,6 +66,7 @@ class window.MlCnf
           HEIGHT: 540
         SPACES: [7..15]
         ORDER_ASC: false
+        TEXT_POSITION: 'left'
       }
       {
         POS:
@@ -74,6 +77,7 @@ class window.MlCnf
           HEIGHT: 540
         SPACES: [16..24]
         ORDER_ASC: true
+        TEXT_POSITION: 'right'
       }
 
       # P25〜40
@@ -86,6 +90,7 @@ class window.MlCnf
           HEIGHT: 480
         SPACES: [25..32]
         ORDER_ASC: false
+        TEXT_POSITION: 'left'
       }
       {
         POS:
@@ -96,6 +101,7 @@ class window.MlCnf
           HEIGHT: 480
         SPACES: [33..40]
         ORDER_ASC: true
+        TEXT_POSITION: 'right'
       }
 
       # P41〜58
@@ -108,6 +114,7 @@ class window.MlCnf
           HEIGHT: 540
         SPACES: [41..49]
         ORDER_ASC: false
+        TEXT_POSITION: 'left'
       }
       {
         POS:
@@ -118,6 +125,7 @@ class window.MlCnf
           HEIGHT: 540
         SPACES: [50..58]
         ORDER_ASC: true
+        TEXT_POSITION: 'right'
       }
     ]
     ICON:
