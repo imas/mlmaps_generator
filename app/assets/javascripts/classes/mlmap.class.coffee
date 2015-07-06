@@ -28,27 +28,11 @@ class window.Mlmap
     this
 
   getSpacePosition: (space_num, space_alphabet) ->
-    [block_index, num_offset, is_asc] = if space_num <= 2
-        [0, 1, true]
-      else if space_num <= 6
-        [1, 3, true]
-      else if space_num <= 15
-        [2, 7, false]
-      else if space_num <= 24
-        [3, 16, true]
-      else if space_num <= 32
-        [4, 25, false]
-      else if space_num <= 40
-        [5, 33, true]
-      else if space_num <= 49
-        [6, 41, false]
-      else
-        [7, 50, true]
-    sp_block = MlCnf.MAP.BLOCKS[block_index]
-    rel_spnum = space_num - num_offset
+    sp_block = this.getBlockBySpaceNum(space_num)
+    rel_spnum = space_num - sp_block.SPACES[0]
 
     pos_y = 0
-    if is_asc
+    if sp_block.ORDER_ASC
       pos_y = sp_block.POS.Y + rel_spnum * MlCnf.MAP.ICON.HEIGHT * 2
       pos_y += MlCnf.MAP.ICON.HEIGHT if space_alphabet == 'b'
     else
@@ -57,6 +41,12 @@ class window.Mlmap
     pos_y += MlCnf.MAP.ICON.HEIGHT / 2 if space_alphabet == 'ab'
 
     [sp_block.POS.X, pos_y]
+
+  getBlockBySpaceNum: (space_num) ->
+    space_num = parseInt space_num
+    for block in MlCnf.MAP.BLOCKS
+      if space_num in block.SPACES
+        return block
 
   _resetCanvas: () ->
     @ctx.save()

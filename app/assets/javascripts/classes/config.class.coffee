@@ -37,6 +37,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 120
+        SPACES: [1..2]
+        ORDER_ASC: true
       }
       {
         POS:
@@ -45,6 +47,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 240
+        SPACES: [3..6]
+        ORDER_ASC: true
       }
 
       # P7〜24
@@ -55,6 +59,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 540
+        SPACES: [7..15]
+        ORDER_ASC: false
       }
       {
         POS:
@@ -63,6 +69,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 540
+        SPACES: [16..24]
+        ORDER_ASC: true
       }
 
       # P25〜40
@@ -73,6 +81,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 480
+        SPACES: [25..32]
+        ORDER_ASC: false
       }
       {
         POS:
@@ -81,6 +91,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 480
+        SPACES: [33..40]
+        ORDER_ASC: true
       }
 
       # P41〜58
@@ -91,6 +103,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 540
+        SPACES: [41..49]
+        ORDER_ASC: false
       }
       {
         POS:
@@ -99,6 +113,8 @@ class window.MlCnf
         SIZE:
           WIDTH: 30
           HEIGHT: 540
+        SPACES: [50..58]
+        ORDER_ASC: true
       }
     ]
     ICON:
