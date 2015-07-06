@@ -32,6 +32,7 @@ class window.Mlmap
         this._drawString(user.textfield.value, x - 5, y, { font: { style: 'bold', size: 6, color: 'red' }, text_align: 'end' })
 
     this._drawString('ミリフェスマップ', 30, 30, { font: { size: 23, color: '#333333', style: 'bold' }})
+    this._drawString('MlMapGenerator 2015 by @treby006', 2, @canvas.height - 12, { font: { size: 6, color: '#aaaaaa' } })
     this
 
   getSpacePosition: (space_num, space_alphabet) ->
