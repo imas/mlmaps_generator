@@ -4,7 +4,7 @@
 
 <div class='col-lg-3' style='height: 710px; overflow: scroll;'>
 <table class="table table-bordered" style='font-size: .8em; width: 100%;'>
-  <thead>
+  <thead style='text-align: center;'>
     <tr>
       <th>#</th>
       <th>UserInfo</th>

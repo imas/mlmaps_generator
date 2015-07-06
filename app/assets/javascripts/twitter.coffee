@@ -11,7 +11,7 @@ $ ->
     userid = $(target).attr('data-target-id')
     @mlmap.draw()
 
-  $('.mlmap-row textarea').on 'keyup', (ev) =>
+  $('td textarea').on 'keyup', (ev) =>
     @mlmap.draw()
 
   $(document).on 'ready', (ev) =>
@@ -23,7 +23,7 @@ $ ->
         id: id
         spnum: spnum
         spalp: spalp
-        textfield: $("#memo-#{id}", item)[0]
+        textfield: $("#memo-#{id}")[0]
         icon: $('.mlmap-user-icon', item)[0]
         checkbox: $('.toggle-icon', item)[0]
       })
