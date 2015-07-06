@@ -1,9 +1,7 @@
-<h1>ミリフェスMAPジェネレーター</h1>
 <% if current_user %>
   <p><%= current_user.name %>でログイン中</p>
   <ul>
-    <li><%= link_to 'フォロー一覧を取得', twitter_friends_path %></li>
-    <li><%= link_to 'ミリフェスMAPの作成', twitter_millimas_friends_path %></li>
+    <li><%= link_to 'ミリフェスMAPの作成', twmap_path('millifes2') %></li>
     <li><%= link_to 'ログアウト', logout_path %></li>
   </ul>
 <% else %>

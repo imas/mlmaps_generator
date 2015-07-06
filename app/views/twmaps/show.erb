@@ -1,0 +1,13 @@
+<div class='col-lg-3'>
+  <%- unless current_user %>
+    <%= render partial: 'introduction' %>
+  <%- else %>
+    <div class='row' style='height: 710px; overflow: scroll;'>
+      <%= render partial: 'friend_list', locals: { friend_list: @millifes_list } %>
+    </div>
+  <%- end %>
+</div>
+
+<div class='col-lg-9'>
+  <canvas style='border:1px solid gray' id='mlmap' width='800px' height='708px'></canvas>
+</div>

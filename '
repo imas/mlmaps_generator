@@ -1,0 +1,49 @@
+<div class='col-lg-9'>
+  <canvas style='border:1px solid gray' id='mlmap' width='800px' height='708px'></canvas>
+</div>
+
+<div class='col-lg-3' style='height: 710px; overflow: scroll;'>
+<table class="table table-bordered" style='font-size: .8em; width: 100%;'>
+  <thead style='text-align: center;'>
+    <tr>
+      <th>#</th>
+      <th>UserInfo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @millifes_list.each do |ml| %>
+      <tr class="mlmap-row" id="row-<%= ml[:friend].id %>" data-target-id="<%= ml[:friend].id %>" data-spnum="<%= ml[:space] %>" data-spalp="<%= ml[:alphabet] %>">
+        <td rowspan='3'>
+          <div style='text-align: center'>
+            P<span style='font-weight: bold'><%= ml[:space] %></span>-<%= ml[:alphabet] %><br />
+            <%= label_tag "visible-icon-#{ml[:friend].id}" do %>
+              <%= image_tag(ml[:friend].profile_image_url, alt: ml[:friend].name, class: 'mlmap-user-icon', width: '30', height: '30') %>
+            <%- end %>
+            <br />
+            <%= check_box_tag("visible-icon-#{ml[:friend].id}", true, true, class: 'toggle-icon', data: { target_id: ml[:friend].id })%>
+          </div>
+        </td>
+        <td>
+          <%= link_to ml[:friend].url.to_s, target: '_blank' do%>
+            @<%= ml[:friend].screen_name %>
+          <%- end %>
+          /
+          <span style='font-size: .8em'>
+            <%- if ml[:friend].website? %>
+              <%= link_to ml[:friend].name, ml[:friend].website.to_s, target: '_blank' %>
+            <%- else %>
+              <%= ml[:friend].name %>
+            <%- end %>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td style='font-size: .8em'><%= ml[:friend].description %></td>
+      </tr>
+      <tr>
+        <td><%= text_area_tag("memo-#{ml[:friend].id}", "@#{ml[:friend].screen_name}", style: 'width: 100%') %></td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>
+</div>

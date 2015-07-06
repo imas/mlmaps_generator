@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root to: 'twmaps#show', id: 'millifes2'
 
   # auth
   get '/auth/:provider/callback', :to => 'sessions#callback'
   post '/auth/:provider/callback', :to => 'sessions#callback'
   get '/logout' => 'sessions#destroy', :as => :logout
 
-  # twitter
-  get 'twitter/friends'
-  get 'twitter/millimas_friends'
+  resources :twmaps, only: [:show]
 end
