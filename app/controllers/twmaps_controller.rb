@@ -8,7 +8,12 @@ class TwmapsController < ApplicationController
     return unless current_user
     require 'nkf'
 
-    list = friend_list
+    begin
+      list = friend_list
+    rescue Twitter::Error::Unauthorized => error
+      redirect_to logout_path
+      return
+    end
 
     list.each do |friend|
       next unless (NKF.nkf('-wXZ', friend.name) =~ /ミリフェス/)
