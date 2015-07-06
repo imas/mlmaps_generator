@@ -27,6 +27,9 @@ class window.MlCnf
       SIZE:
         WIDTH: 120
         HEIGHT: 100
+    BORDER:
+      COLOR: '#aaaaaa'
+      WIDTH: 0.5
 
     BLOCKS: [
       # P1〜6

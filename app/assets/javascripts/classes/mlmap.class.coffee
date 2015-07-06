@@ -13,6 +13,7 @@ class window.Mlmap
 
     this._drawStage()
     this._drawBlocks()
+    this._drawSpaces()
 
     $.each @users, (i, user) =>
       [x, y] = this.getSpacePosition(user.spnum, user.spalp)
@@ -34,13 +35,14 @@ class window.Mlmap
     pos_y = 0
     if sp_block.ORDER_ASC
       pos_y = sp_block.POS.Y + rel_spnum * MlCnf.MAP.ICON.HEIGHT * 2
-      pos_y += MlCnf.MAP.ICON.HEIGHT if space_alphabet == 'b'
     else
       pos_y = sp_block.POS.Y + sp_block.SIZE.HEIGHT - (rel_spnum + 1) * MlCnf.MAP.ICON.HEIGHT * 2
-      pos_y += MlCnf.MAP.ICON.HEIGHT if space_alphabet == 'a'
-    pos_y += MlCnf.MAP.ICON.HEIGHT / 2 if space_alphabet == 'ab'
 
-    [sp_block.POS.X, pos_y]
+    if space_alphabet?
+      pos_y += MlCnf.MAP.ICON.HEIGHT if space_alphabet == (if sp_block.ORDER_ASC then 'b' else 'a')
+      pos_y += MlCnf.MAP.ICON.HEIGHT / 2 if space_alphabet == 'ab'
+
+    [sp_block.POS.X, pos_y, sp_block]
 
   getBlockBySpaceNum: (space_num) ->
     space_num = parseInt space_num
@@ -50,6 +52,7 @@ class window.Mlmap
 
   _resetCanvas: () ->
     @ctx.save()
+    @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
     @ctx.fillStyle = MlCnf.MAP.BGCOLOR
     @ctx.fillRect(0, 0, MlCnf.MAP.WIDTH, MlCnf.MAP.HEIGHT)
     @ctx.restore()
@@ -78,6 +81,18 @@ class window.Mlmap
     for i in [0...(c.length)]
       @ctx.fillRect(c[i].POS.X, c[i].POS.Y, c[i].SIZE.WIDTH, c[i].SIZE.HEIGHT)
 
+    @ctx.restore()
+
+  _drawSpaces: () ->
+    border = MlCnf.MAP.BORDER
+    @ctx.save()
+    for i in [1..58]
+      [x, y, block] = this.getSpacePosition(i)
+      @ctx.strokeStyle = border.COLOR
+      @ctx.lineWidth = border.width
+      @ctx.strokeRect(x - 1, y, block.SIZE.WIDTH + 2, block.SIZE.WIDTH * 2)
+      str_num = if i < 10 then "0#{i}" else "#{i}"
+      this._drawString("#{str_num}", x + 15, y + 25, { font: { size: 14, color: '#cccccc' }, text_align: 'center' })
     @ctx.restore()
 
   _drawString: (str, x, y, conf) ->
