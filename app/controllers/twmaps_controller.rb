@@ -19,7 +19,15 @@ class TwmapsController < ApplicationController
       next unless (NKF.nkf('-wXZ', friend.name) =~ /ミリフェス/)
       m = /P(?<spnum>\d+)(?<spalp>[abAB]+)?/.match(friend.name)
       next if m.nil?
-      @millifes_list << { friend: friend, space: m['spnum'], alphabet: (m['spalp'].presence || 'ab') }
+
+      # for security reason, remote url cannot convert canvas to dataurl...
+      require 'open-uri'
+
+      open("public/images/tmp/#{friend.id}", 'wb') do |file|
+        file << open(friend.profile_image_url).read
+      end
+
+      @millifes_list << { friend: friend, local_icon_url: "tmp/#{friend.id}", space: m['spnum'], alphabet: (m['spalp'].presence || 'ab') }
     end
     @millifes_list.sort! { |a, b| a[:space].to_i <=> b[:space].to_i }
   end
