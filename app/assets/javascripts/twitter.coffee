@@ -14,10 +14,13 @@ $ ->
   $('td textarea').on 'keyup', (ev) =>
     @mlmap.draw()
 
+  $('#mlmap-output-button').on 'click', (ev) =>
+    window.open @mlmap.toDataURL()
+
   $(document).on 'ready', (ev) =>
     setTimeout () =>
       init($('canvas#mlmap')[0])
-    , 300
+    , 100
 
   init = (canvas) =>
     @mlmap = new Mlmap(canvas)

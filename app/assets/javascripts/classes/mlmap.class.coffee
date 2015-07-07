@@ -35,6 +35,9 @@ class window.Mlmap
     this._drawString('MlMapGenerator 2015 by @treby006', 2, @canvas.height - 12, { font: { size: 6, color: '#aaaaaa' } })
     this
 
+  toDataURL: () ->
+    @canvas.toDataURL()
+
   getSpacePosition: (space_num, space_alphabet) ->
     sp_block = this.getBlockBySpaceNum(space_num)
     rel_spnum = space_num - sp_block.SPACES[0]
