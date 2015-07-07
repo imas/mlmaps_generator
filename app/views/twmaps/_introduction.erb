@@ -1,24 +1,19 @@
-<div class='row'>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <h4>これは何？</h4>
-      <p>
-        来る7/12(日)に東京ビッグサイトで開催される<%= link_to 'MILLION FESTIV@L!! 2', 'https://www.aoboo.jp/neo/item/p0015.html', target: '_blank' %>の
-        サークルマップを生成する<b>超ごく一部の層に向けた(そして7/12までしか意味のない)ツール</b>です。利用するにはTwitterログインが必要です。
-      </p>
-      <p>
-        <%= link_to 'Twitterでログイン', '/auth/twitter', class: 'btn btn-primary' %>
-      </p>
-      <h4>ログインすると何が起こるの？</h4>
-      <p>
-        あなたがフォローしている人のうち、ミリフェスに出すっぽい人を抽出して白地図上に配置します。一応メモっぽいこともできます。
-        <%= link_to '@t3_', 'https://twitter.com/t3_', target: '_blank' %>さんが作ってるような自分用の地図が欲しくて作りました。
-        詳しくは<%= link_to '作者のブログ記事', 'http://www.atelier-nodoka.net/2015/07/mlmaps-generator/', target: '_blank' %>を参照してください。利用環境はPCを想定して作っています。
-      </p>
-      <h4>ご要望・フィードバック等</h4>
-      <p>
-        <%= link_to '@treby006', 'https://twitter.com/treby006', target: '_blank' %>まで。応援ください。
-      </p>
-    </div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4>これは何？</h4>
+    <p>
+      来る7/12(日)に東京ビッグサイトで開催される<%= link_to 'MILLION FESTIV@L!! 2', 'https://www.aoboo.jp/neo/item/p0015.html', target: '_blank' %>の
+      サークルマップを生成する<b>超ごく一部の層に向けた(そして7/12までしか意味のない)ツール</b>です。利用するにはTwitterログインが必要です。
+    </p>
+    <p><%= link_to 'Twitterでログイン', '/auth/twitter', class: 'btn btn-primary' %></p>
+    <h4>ログインすると何が起こるの？</h4>
+    <p>
+      あなたがフォローしている人のうち、ミリフェスに出すっぽい人を抽出して白地図上に配置します。一応メモっぽいこともできます。
+      <%= link_to '@t3_', 'https://twitter.com/t3_', target: '_blank' %>さんが作ってるような自分用の地図が欲しくて作りました。
+      詳しくは<%= link_to '作者のブログ記事', 'http://www.atelier-nodoka.net/2015/07/mlmaps-generator/', target: '_blank' %>を参照してください。利用環境はPCを想定して作っています。
+    </p>
+    <h4>ご要望・フィードバック等</h4>
+    <p><%= link_to '@treby006', 'https://twitter.com/treby006', target: '_blank' %>まで。応援ください。</p>
   </div>
 </div>
+<%= render partial: 'twitter_widget' %>
