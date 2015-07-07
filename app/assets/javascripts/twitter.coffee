@@ -20,7 +20,7 @@ $ ->
   $(document).on 'ready', (ev) =>
     setTimeout () =>
       init($('canvas#mlmap')[0])
-    , 100
+    , 500
 
   init = (canvas) =>
     @mlmap = new Mlmap(canvas)
