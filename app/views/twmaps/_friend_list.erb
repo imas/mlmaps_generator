@@ -12,7 +12,7 @@
           <div style='text-align: center'>
             P<span style='font-weight: bold'><%= ml[:space] %></span>-<%= ml[:alphabet] %><br />
             <%= label_tag "visible-icon-#{ml[:friend].id}" do %>
-              <%= image_tag(ml[:local_icon_url], alt: ml[:friend].name, class: 'mlmap-user-icon', width: '30', height: '30') %>
+              <img class='mlmap-user-icon' id='mlmap-user-icon-<%= ml[:friend].id %>' style='width: 30px; height: 30px;' alt='<%= ml[:friend].name %>' />
             <%- end %>
             <br />
             <%= check_box_tag("visible-icon-#{ml[:friend].id}", true, true, class: 'toggle-icon', data: { target_id: ml[:friend].id })%>

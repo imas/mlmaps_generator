@@ -18,20 +18,23 @@ $ ->
     window.open @mlmap.toDataURL()
 
   $(document).on 'ready', (ev) =>
-    setTimeout () =>
-      init($('canvas#mlmap')[0])
-    , 500
+    init($('canvas#mlmap')[0])
 
   init = (canvas) =>
     @mlmap = new Mlmap(canvas)
     $.each $('.mlmap-row'), (i, item) =>
       [id, spnum, spalp] = [$(item).attr('data-target-id'), $(item).attr('data-spnum'), $(item).attr('data-spalp')]
-      @mlmap.addUser({
-        id: id
-        spnum: spnum
-        spalp: spalp
-        textfield: $("#memo-#{id}")[0]
-        icon: $('.mlmap-user-icon', item)[0]
-        checkbox: $('.toggle-icon', item)[0]
-      })
+      icon = $('.mlmap-user-icon', item)[0]
+      icon.onload = () =>
+        console.log icon
+        @mlmap.addUser({
+          id: id
+          spnum: spnum
+          spalp: spalp
+          textfield: $("#memo-#{id}")[0]
+          icon: icon
+          checkbox: $('.toggle-icon', item)[0]
+        })
+        @mlmap.draw()
+      icon.src = "images/tmp/#{id}"
     @mlmap.draw()
